@@ -26,6 +26,9 @@
 
 	ArrayList<Terapie> terapie = dbms.getTerapieCartella(c.getId());
 	ArrayList<Diagnosi> diagnosi = dbms.getDiagnosiCartella(c.getId());
+	
+	ArrayList<Conferme> conferme;
+	ArrayList<Contraddizioni> contraddizioni;
 %>
 <title>Cartella - <%=c.getId()%></title>
 
@@ -112,7 +115,7 @@
 			<div style="float: center; width: 50%;" align="center">
 			
 				<%
-					for (i = 0; i < terapie.size(); i++) {
+					for (i = 0; i < terapie.size() ; i++) {
 				%>
 				<p>
 				<a class="button"
@@ -143,6 +146,8 @@
 				<p>
 				<a class="button"
 					style="margin-top: 0px; background-color: #000000;">
+					data: <%=diagnosi.get(i).getId().getData() %><br>
+					
 					medico:  
 					<%= diagnosi.get(i).getMedico().getNome() %> <%= diagnosi.get(i).getMedico().getCognome() %><br>
 					patologia: <%=diagnosi.get(i).getPatologia() %><br>
@@ -150,21 +155,27 @@
 					<br><br>
 					sintomi che confermano la patologia: <%=diagnosi.get(i).getConfermes().size() %>
 					
-									<%
-					for (int j = 0; i < diagnosi.get(i).getConfermes().size(); j++) {
+				<%
+					conferme = dbms.getConfermeDiagnosi(diagnosi.get(i).getId());
+				
+					for (int j = 0; j < conferme.size(); j++) {
 				%>
 					
-					<%=diagnosi.get(i).getConfermes().toArray()[j] %>
+					<%= conferme.get(j).getId().getNPat() %>
+					
 					<% } %>
 					
 										<br><br>
 					sintomi che contraddicono la patologia: <%=diagnosi.get(i).getContraddizionis().size() %>
 					
-									<%
-					for (int j = 0; i < diagnosi.get(i).getContraddizionis().size(); j++) {
+				<%
+					contraddizioni = dbms.getContraddizioniDiagnosi(diagnosi.get(i).getId());
+				
+					for (int j = 0; j < conferme.size(); j++) {
 				%>
 					
-					<%=diagnosi.get(i).getContraddizionis().toArray()[j] %>
+					<%= contraddizioni.get(j).getId().getNPat() %>
+					
 					<% } %>
 					
 					

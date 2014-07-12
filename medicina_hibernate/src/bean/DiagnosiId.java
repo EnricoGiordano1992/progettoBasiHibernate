@@ -1,6 +1,6 @@
 package bean;
 
-// Generated 9-lug-2014 12.20.42 by Hibernate Tools 3.4.0.CR1
+// Generated 12-lug-2014 19.15.43 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -11,13 +11,15 @@ public class DiagnosiId implements java.io.Serializable {
 
 	private String idPaziente;
 	private Date data;
+	private String idCartella;
 
 	public DiagnosiId() {
 	}
 
-	public DiagnosiId(String idPaziente, Date data) {
+	public DiagnosiId(String idPaziente, Date data, String idCartella) {
 		this.idPaziente = idPaziente;
 		this.data = data;
+		this.idCartella = idCartella;
 	}
 
 	public String getIdPaziente() {
@@ -36,6 +38,14 @@ public class DiagnosiId implements java.io.Serializable {
 		this.data = data;
 	}
 
+	public String getIdCartella() {
+		return this.idCartella;
+	}
+
+	public void setIdCartella(String idCartella) {
+		this.idCartella = idCartella;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -50,7 +60,11 @@ public class DiagnosiId implements java.io.Serializable {
 				.getIdPaziente().equals(castOther.getIdPaziente())))
 				&& ((this.getData() == castOther.getData()) || (this.getData() != null
 						&& castOther.getData() != null && this.getData()
-						.equals(castOther.getData())));
+						.equals(castOther.getData())))
+				&& ((this.getIdCartella() == castOther.getIdCartella()) || (this
+						.getIdCartella() != null
+						&& castOther.getIdCartella() != null && this
+						.getIdCartella().equals(castOther.getIdCartella())));
 	}
 
 	public int hashCode() {
@@ -62,6 +76,10 @@ public class DiagnosiId implements java.io.Serializable {
 						.hashCode());
 		result = 37 * result
 				+ (getData() == null ? 0 : this.getData().hashCode());
+		result = 37
+				* result
+				+ (getIdCartella() == null ? 0 : this.getIdCartella()
+						.hashCode());
 		return result;
 	}
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 9-lug-2014 12.20.43 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12-lug-2014 19.15.44 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="bean.Diagnosi" table="diagnosi" schema="public">
         <composite-id name="id" class="bean.DiagnosiId">
@@ -11,7 +11,13 @@
             <key-property name="data" type="date">
                 <column name="data" length="13" />
             </key-property>
+            <key-property name="idCartella" type="string">
+                <column name="id_cartella" length="30" />
+            </key-property>
         </composite-id>
+        <many-to-one name="cartellaClinica" class="bean.CartellaClinica" update="false" insert="false" fetch="select">
+            <column name="id_cartella" length="30" not-null="true" />
+        </many-to-one>
         <many-to-one name="paziente" class="bean.Paziente" update="false" insert="false" fetch="select">
             <column name="id_paziente" length="30" not-null="true" />
         </many-to-one>
@@ -24,17 +30,19 @@
         <property name="patologia" type="string">
             <column name="patologia" length="200" not-null="true" />
         </property>
-        <set name="confermes" table="conferme" inverse="true" lazy="false" fetch="select">
+        <set name="confermes" table="conferme" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_diagnosi" length="30" not-null="true" />
+                <column name="id_paziente" length="30" not-null="true" />
                 <column name="data" length="13" not-null="true" />
+                <column name="id_cartella" length="30" not-null="true" />
             </key>
             <one-to-many class="bean.Conferme" />
         </set>
-        <set name="contraddizionis" table="contraddizioni" inverse="true" lazy="false" fetch="select">
+        <set name="contraddizionis" table="contraddizioni" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_diagnosi" length="30" not-null="true" />
+                <column name="id_paziente" length="30" not-null="true" />
                 <column name="data" length="13" not-null="true" />
+                <column name="id_cartella" length="30" not-null="true" />
             </key>
             <one-to-many class="bean.Contraddizioni" />
         </set>

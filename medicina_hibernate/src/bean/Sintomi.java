@@ -1,7 +1,8 @@
 package bean;
 
-// Generated 9-lug-2014 12.20.42 by Hibernate Tools 3.4.0.CR1
+// Generated 12-lug-2014 19.15.43 by Hibernate Tools 3.4.0.CR1
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,25 +12,32 @@ import java.util.Set;
 public class Sintomi implements java.io.Serializable {
 
 	private SintomiId id;
-	private Paziente paziente;
+	private CartellaClinica cartellaClinica;
 	private String intensita;
+	private Date data;
+	private Integer durata;
 	private Set contraddizionis = new HashSet(0);
 	private Set confermes = new HashSet(0);
 
 	public Sintomi() {
 	}
 
-	public Sintomi(SintomiId id, Paziente paziente, String intensita) {
+	public Sintomi(SintomiId id, CartellaClinica cartellaClinica,
+			String intensita, Date data) {
 		this.id = id;
-		this.paziente = paziente;
+		this.cartellaClinica = cartellaClinica;
 		this.intensita = intensita;
+		this.data = data;
 	}
 
-	public Sintomi(SintomiId id, Paziente paziente, String intensita,
-			Set contraddizionis, Set confermes) {
+	public Sintomi(SintomiId id, CartellaClinica cartellaClinica,
+			String intensita, Date data, Integer durata, Set contraddizionis,
+			Set confermes) {
 		this.id = id;
-		this.paziente = paziente;
+		this.cartellaClinica = cartellaClinica;
 		this.intensita = intensita;
+		this.data = data;
+		this.durata = durata;
 		this.contraddizionis = contraddizionis;
 		this.confermes = confermes;
 	}
@@ -42,12 +50,12 @@ public class Sintomi implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Paziente getPaziente() {
-		return this.paziente;
+	public CartellaClinica getCartellaClinica() {
+		return this.cartellaClinica;
 	}
 
-	public void setPaziente(Paziente paziente) {
-		this.paziente = paziente;
+	public void setCartellaClinica(CartellaClinica cartellaClinica) {
+		this.cartellaClinica = cartellaClinica;
 	}
 
 	public String getIntensita() {
@@ -56,6 +64,22 @@ public class Sintomi implements java.io.Serializable {
 
 	public void setIntensita(String intensita) {
 		this.intensita = intensita;
+	}
+
+	public Date getData() {
+		return this.data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public Integer getDurata() {
+		return this.durata;
+	}
+
+	public void setDurata(Integer durata) {
+		this.durata = durata;
 	}
 
 	public Set getContraddizionis() {

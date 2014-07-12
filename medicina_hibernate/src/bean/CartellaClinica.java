@@ -1,6 +1,6 @@
 package bean;
 
-// Generated 9-lug-2014 12.20.42 by Hibernate Tools 3.4.0.CR1
+// Generated 12-lug-2014 19.15.43 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -18,6 +18,8 @@ public class CartellaClinica implements java.io.Serializable {
 	private String motivo;
 	private String prognosi;
 	private Set terapies = new HashSet(0);
+	private Set diagnosis = new HashSet(0);
+	private Set sintomis = new HashSet(0);
 
 	public CartellaClinica() {
 	}
@@ -31,7 +33,8 @@ public class CartellaClinica implements java.io.Serializable {
 	}
 
 	public CartellaClinica(String id, Paziente paziente, Date dataRicovero,
-			Date dataDimissione, String motivo, String prognosi, Set terapies) {
+			Date dataDimissione, String motivo, String prognosi, Set terapies,
+			Set diagnosis, Set sintomis) {
 		this.id = id;
 		this.paziente = paziente;
 		this.dataRicovero = dataRicovero;
@@ -39,6 +42,8 @@ public class CartellaClinica implements java.io.Serializable {
 		this.motivo = motivo;
 		this.prognosi = prognosi;
 		this.terapies = terapies;
+		this.diagnosis = diagnosis;
+		this.sintomis = sintomis;
 	}
 
 	public String getId() {
@@ -95,6 +100,22 @@ public class CartellaClinica implements java.io.Serializable {
 
 	public void setTerapies(Set terapies) {
 		this.terapies = terapies;
+	}
+
+	public Set getDiagnosis() {
+		return this.diagnosis;
+	}
+
+	public void setDiagnosis(Set diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+
+	public Set getSintomis() {
+		return this.sintomis;
+	}
+
+	public void setSintomis(Set sintomis) {
+		this.sintomis = sintomis;
 	}
 
 }

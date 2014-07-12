@@ -186,6 +186,7 @@ public class main extends HttpServlet {
 				String data = request.getParameter("data");
 				String ICD10 = request.getParameter("ICD10");
 				String patologia = request.getParameter("patologia");
+				String cartella_clinica = request.getParameter("cartella");
 				
 				//prendo tutti i sintomi e la loro tipologia (conferma/contraddizione)
 				ArrayList<String> sintomi = new ArrayList<String>();
@@ -210,7 +211,7 @@ public class main extends HttpServlet {
 					
 				}while(!stop);
 				
-				dbms.insertNewDiagnosi(sintomi.size(), paziente, data, medico, ICD10, patologia, sintomi, tipo, intensita);
+				dbms.insertNewDiagnosi(sintomi.size(), cartella_clinica, paziente, data, medico, ICD10, patologia, sintomi, tipo, intensita);
 
 				rd = request.getRequestDispatcher("DiagnosiPage.jsp");
 				

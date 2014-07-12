@@ -1,6 +1,6 @@
 package bean;
 
-// Generated 9-lug-2014 12.20.42 by Hibernate Tools 3.4.0.CR1
+// Generated 12-lug-2014 19.15.43 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +11,7 @@ import java.util.Set;
 public class Diagnosi implements java.io.Serializable {
 
 	private DiagnosiId id;
+	private CartellaClinica cartellaClinica;
 	private Paziente paziente;
 	private Medico medico;
 	private String icd10;
@@ -21,17 +22,20 @@ public class Diagnosi implements java.io.Serializable {
 	public Diagnosi() {
 	}
 
-	public Diagnosi(DiagnosiId id, Paziente paziente, String icd10,
-			String patologia) {
+	public Diagnosi(DiagnosiId id, CartellaClinica cartellaClinica,
+			Paziente paziente, String icd10, String patologia) {
 		this.id = id;
+		this.cartellaClinica = cartellaClinica;
 		this.paziente = paziente;
 		this.icd10 = icd10;
 		this.patologia = patologia;
 	}
 
-	public Diagnosi(DiagnosiId id, Paziente paziente, Medico medico,
-			String icd10, String patologia, Set confermes, Set contraddizionis) {
+	public Diagnosi(DiagnosiId id, CartellaClinica cartellaClinica,
+			Paziente paziente, Medico medico, String icd10, String patologia,
+			Set confermes, Set contraddizionis) {
 		this.id = id;
+		this.cartellaClinica = cartellaClinica;
 		this.paziente = paziente;
 		this.medico = medico;
 		this.icd10 = icd10;
@@ -46,6 +50,14 @@ public class Diagnosi implements java.io.Serializable {
 
 	public void setId(DiagnosiId id) {
 		this.id = id;
+	}
+
+	public CartellaClinica getCartellaClinica() {
+		return this.cartellaClinica;
+	}
+
+	public void setCartellaClinica(CartellaClinica cartellaClinica) {
+		this.cartellaClinica = cartellaClinica;
 	}
 
 	public Paziente getPaziente() {

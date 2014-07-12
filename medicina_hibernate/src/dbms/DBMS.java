@@ -73,6 +73,18 @@ public class DBMS {
 			"and p.codsan = d.id_paziente " +
 			"and p.codsan = c.codsan " +
 			"and d.id_medico = m.id ;";
+	
+	String queryConfermeDellaDiagnosi = 
+			"select c.* "
+			+ "from conferme as c "
+			+ "where c.id_diagnosi = (:id_diagnosi) "
+			+ "and c.data = (:data_diagnosi) ;";
+
+	String queryContraddizioniDellaDiagnosi = 
+			"select c.* "
+			+ "from contraddizioni as c "
+			+ "where c.id_diagnosi = (:id_diagnosi) "
+			+ "and c.data = (:data_diagnosi) ;";
 
 	//query per la personalepage
 	//so gia tutto del primario 
@@ -325,6 +337,52 @@ public class DBMS {
 		return result;	
 
 	}
+	
+	
+	
+	public ArrayList<Conferme> getConfermeDiagnosi(DiagnosiId dId){
+
+		ArrayList<Conferme> result = null;
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction(); 
+
+		Query query = session.createSQLQuery(queryConfermeDellaDiagnosi).addEntity(Diagnosi.class);
+		query.setString("id_diagnosi", dId.getIdPaziente());
+		
+		query.setDate("data_diagnosi", dId.getData());
+
+		result = ( ArrayList<Conferme> ) query.list();
+		
+		
+		tx.commit();
+		session.close();
+
+		return result;	
+
+	}
+
+	public ArrayList<Contraddizioni> getContraddizioniDiagnosi(DiagnosiId dId){
+
+		ArrayList<Contraddizioni> result = null;
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = session.beginTransaction(); 
+
+		Query query = session.createSQLQuery(queryContraddizioniDellaDiagnosi).addEntity(Diagnosi.class);
+		query.setString("id_diagnosi", dId.getIdPaziente());
+
+		query.setDate("data_diagnosi", dId.getData());
+
+		result = ( ArrayList<Contraddizioni> ) query.list();
+		
+		
+		tx.commit();
+		session.close();
+
+		return result;	
+
+	}
 
 
 	/***********************************************************/
@@ -477,11 +535,12 @@ public class DBMS {
 	}
 	
 	
-	public void insertNewDiagnosi(int numargs, String id_paziente, String data, 
+	public void insertNewDiagnosi(int numargs, String id_cartella, String id_paziente, String data, 
 			String id_medico, String icd10, String patologia, 
 			ArrayList<String> sintomi, ArrayList<String> tipo, ArrayList<String> intensita) throws ParseException {
 		
 		Paziente paziente = getPaziente(id_paziente);
+		CartellaClinica cartella = getCartella(id_cartella);
 		Medico medico = getMedico(id_medico);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -495,7 +554,7 @@ public class DBMS {
 		session.beginTransaction();
 
         Diagnosi d = new Diagnosi();
-		d.setId(new DiagnosiId(paziente.getCodsan(), date));
+		d.setId(new DiagnosiId(paziente.getCodsan(), date, id_cartella));
 		d.setIcd10(icd10);
 		d.setMedico(medico);
 		d.setPatologia(patologia);
@@ -515,8 +574,8 @@ public class DBMS {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 
-    		SintomiId s_id = new SintomiId(sintomi.get(i), paziente.getCodsan());
-    		Sintomi s = new Sintomi(s_id, paziente, intensita.get(i));
+    		SintomiId s_id = new SintomiId(sintomi.get(i), cartella.getId());
+    		Sintomi s = new Sintomi(s_id, cartella, intensita.get(i), date);
 
 			session.save(s);
 	        session.getTransaction().commit(); 
@@ -529,7 +588,7 @@ public class DBMS {
 			if(tipo.get(i).equals("conferma")){
 				conferme.setDiagnosi(d);
 				
-				ConfermeId c_id = new ConfermeId(paziente.getCodsan(), sintomi.get(i), paziente.getCodsan() , date);
+				ConfermeId c_id = new ConfermeId(s_id.getNome(), sintomi.get(i), id_paziente, date, id_cartella);
 				conferme.setId(c_id);
 				
 				conferme.setSintomi(s);
@@ -538,7 +597,7 @@ public class DBMS {
 			else{
 				contraddizioni.setDiagnosi(d);
 				
-				ContraddizioniId c_id = new ContraddizioniId(paziente.getCodsan(), sintomi.get(i), paziente.getCodsan() , date);
+				ContraddizioniId c_id = new ContraddizioniId(s_id.getNome(), sintomi.get(i), id_paziente, date, id_cartella);
 				contraddizioni.setId(c_id);
 				
 				contraddizioni.setSintomi(s);

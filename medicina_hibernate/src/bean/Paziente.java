@@ -1,6 +1,6 @@
 package bean;
 
-// Generated 9-lug-2014 12.20.42 by Hibernate Tools 3.4.0.CR1
+// Generated 12-lug-2014 19.15.43 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -21,7 +21,6 @@ public class Paziente implements java.io.Serializable {
 	private String prov;
 	private int cap;
 	private String civico;
-	private Set sintomis = new HashSet(0);
 	private Set cartellaClinicas = new HashSet(0);
 	private Set rischiPazientes = new HashSet(0);
 	private Set diagnosis = new HashSet(0);
@@ -46,8 +45,8 @@ public class Paziente implements java.io.Serializable {
 
 	public Paziente(String codsan, String nome, String cognome, Date nascita,
 			String psw, String citta, String via, String prov, int cap,
-			String civico, Set sintomis, Set cartellaClinicas,
-			Set rischiPazientes, Set diagnosis) {
+			String civico, Set cartellaClinicas, Set rischiPazientes,
+			Set diagnosis) {
 		this.codsan = codsan;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -58,7 +57,6 @@ public class Paziente implements java.io.Serializable {
 		this.prov = prov;
 		this.cap = cap;
 		this.civico = civico;
-		this.sintomis = sintomis;
 		this.cartellaClinicas = cartellaClinicas;
 		this.rischiPazientes = rischiPazientes;
 		this.diagnosis = diagnosis;
@@ -142,14 +140,6 @@ public class Paziente implements java.io.Serializable {
 
 	public void setCivico(String civico) {
 		this.civico = civico;
-	}
-
-	public Set getSintomis() {
-		return this.sintomis;
-	}
-
-	public void setSintomis(Set sintomis) {
-		this.sintomis = sintomis;
 	}
 
 	public Set getCartellaClinicas() {

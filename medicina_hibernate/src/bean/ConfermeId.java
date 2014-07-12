@@ -1,6 +1,6 @@
 package bean;
 
-// Generated 9-lug-2014 12.20.42 by Hibernate Tools 3.4.0.CR1
+// Generated 12-lug-2014 19.15.43 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -10,19 +10,21 @@ import java.util.Date;
 public class ConfermeId implements java.io.Serializable {
 
 	private String idSintomo;
-	private String NPat;
-	private String idDiagnosi;
+	private String NSint;
+	private String idPaziente;
 	private Date data;
+	private String idCartella;
 
 	public ConfermeId() {
 	}
 
-	public ConfermeId(String idSintomo, String NPat, String idDiagnosi,
-			Date data) {
+	public ConfermeId(String idSintomo, String NSint, String idPaziente,
+			Date data, String idCartella) {
 		this.idSintomo = idSintomo;
-		this.NPat = NPat;
-		this.idDiagnosi = idDiagnosi;
+		this.NSint = NSint;
+		this.idPaziente = idPaziente;
 		this.data = data;
+		this.idCartella = idCartella;
 	}
 
 	public String getIdSintomo() {
@@ -33,20 +35,20 @@ public class ConfermeId implements java.io.Serializable {
 		this.idSintomo = idSintomo;
 	}
 
-	public String getNPat() {
-		return this.NPat;
+	public String getNSint() {
+		return this.NSint;
 	}
 
-	public void setNPat(String NPat) {
-		this.NPat = NPat;
+	public void setNSint(String NSint) {
+		this.NSint = NSint;
 	}
 
-	public String getIdDiagnosi() {
-		return this.idDiagnosi;
+	public String getIdPaziente() {
+		return this.idPaziente;
 	}
 
-	public void setIdDiagnosi(String idDiagnosi) {
-		this.idDiagnosi = idDiagnosi;
+	public void setIdPaziente(String idPaziente) {
+		this.idPaziente = idPaziente;
 	}
 
 	public Date getData() {
@@ -55,6 +57,14 @@ public class ConfermeId implements java.io.Serializable {
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public String getIdCartella() {
+		return this.idCartella;
+	}
+
+	public void setIdCartella(String idCartella) {
+		this.idCartella = idCartella;
 	}
 
 	public boolean equals(Object other) {
@@ -69,16 +79,20 @@ public class ConfermeId implements java.io.Serializable {
 		return ((this.getIdSintomo() == castOther.getIdSintomo()) || (this
 				.getIdSintomo() != null && castOther.getIdSintomo() != null && this
 				.getIdSintomo().equals(castOther.getIdSintomo())))
-				&& ((this.getNPat() == castOther.getNPat()) || (this.getNPat() != null
-						&& castOther.getNPat() != null && this.getNPat()
-						.equals(castOther.getNPat())))
-				&& ((this.getIdDiagnosi() == castOther.getIdDiagnosi()) || (this
-						.getIdDiagnosi() != null
-						&& castOther.getIdDiagnosi() != null && this
-						.getIdDiagnosi().equals(castOther.getIdDiagnosi())))
+				&& ((this.getNSint() == castOther.getNSint()) || (this
+						.getNSint() != null && castOther.getNSint() != null && this
+						.getNSint().equals(castOther.getNSint())))
+				&& ((this.getIdPaziente() == castOther.getIdPaziente()) || (this
+						.getIdPaziente() != null
+						&& castOther.getIdPaziente() != null && this
+						.getIdPaziente().equals(castOther.getIdPaziente())))
 				&& ((this.getData() == castOther.getData()) || (this.getData() != null
 						&& castOther.getData() != null && this.getData()
-						.equals(castOther.getData())));
+						.equals(castOther.getData())))
+				&& ((this.getIdCartella() == castOther.getIdCartella()) || (this
+						.getIdCartella() != null
+						&& castOther.getIdCartella() != null && this
+						.getIdCartella().equals(castOther.getIdCartella())));
 	}
 
 	public int hashCode() {
@@ -87,13 +101,17 @@ public class ConfermeId implements java.io.Serializable {
 		result = 37 * result
 				+ (getIdSintomo() == null ? 0 : this.getIdSintomo().hashCode());
 		result = 37 * result
-				+ (getNPat() == null ? 0 : this.getNPat().hashCode());
+				+ (getNSint() == null ? 0 : this.getNSint().hashCode());
 		result = 37
 				* result
-				+ (getIdDiagnosi() == null ? 0 : this.getIdDiagnosi()
+				+ (getIdPaziente() == null ? 0 : this.getIdPaziente()
 						.hashCode());
 		result = 37 * result
 				+ (getData() == null ? 0 : this.getData().hashCode());
+		result = 37
+				* result
+				+ (getIdCartella() == null ? 0 : this.getIdCartella()
+						.hashCode());
 		return result;
 	}
 
