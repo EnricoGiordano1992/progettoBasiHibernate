@@ -6602,3 +6602,6 @@ org.mozilla.xpcom.XPCOMException: The function "setAttribute" returned an error 
 
 !ENTRY org.jboss.tools.vpe 4 0 2014-07-13 14:35:38.580
 !MESSAGE !ERROR! VpeCreationData is not initialized for source node 'br'
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2014-07-14 01:22:57.057
+!MESSAGE Port 8080 required by Tomcat v7.0 Server at localhost is already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).

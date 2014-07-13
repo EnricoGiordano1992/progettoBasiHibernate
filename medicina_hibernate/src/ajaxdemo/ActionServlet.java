@@ -37,7 +37,7 @@ public class ActionServlet extends HttpServlet {
 		ArrayList<CartellaClinica> cartelle = dbms.getCartelleDelPaziente(paziente);
 
 		for(int i = 0; i < cartelle.size(); i++)
-			c.put(cartelle.get(i).getId(), cartelle.get(i).getId());
+			c.put(cartelle.get(i).getId(), cartelle.get(i).getId() + " ( " + cartelle.get(i).getDataRicovero() + " <> " + cartelle.get(i).getDataDimissione() + " )");
 
 		String json = null ;
 		json= new Gson().toJson(c);   
