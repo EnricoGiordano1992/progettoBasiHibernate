@@ -153,26 +153,26 @@
 					patologia: <%=diagnosi.get(i).getPatologia() %><br>
 					ICD10: <%=diagnosi.get(i).getIcd10() %><br>
 					<br><br>
-					sintomi che confermano la patologia: <%=diagnosi.get(i).getConfermes().size() %>
+					sintomi che confermano la patologia: <%=diagnosi.get(i).getConfermes().size() %><br><br>
 					
 				<%
 				
 					for (int j = 0; j < diagnosi.get(i).getConfermes().size(); j++) {
 				%>
 					
-					<%= ((Conferme)diagnosi.get(i).getConfermes().toArray()[j]).getSintomi().getId().getIdCartella() %>
+					<%= ((Conferme)diagnosi.get(i).getConfermes().toArray()[j]).getSintomi().getId().getNome() %><br>
 					
 					<% } %>
 					
 										<br><br>
-					sintomi che contraddicono la patologia: <%=diagnosi.get(i).getContraddizionis().size() %>
+					sintomi che contraddicono la patologia: <%=diagnosi.get(i).getContraddizionis().size() %><br><br>
 					
 				<%
 				
 					for (int j = 0; j < diagnosi.get(i).getContraddizionis().size(); j++) {
 				%>
 					
-					<%= ((Contraddizioni)diagnosi.get(i).getContraddizionis().toArray()[j]).getSintomi().getId().getIdCartella() %>
+					<%= ((Contraddizioni)diagnosi.get(i).getContraddizionis().toArray()[j]).getSintomi().getId().getNome() %><br>
 					
 					<% } %>
 					
