@@ -29,6 +29,7 @@
 
 <head>
 
+
 <script type="text/javascript">
 // Funzione che permette di aggiungere elementi al form (ESEMPIO 1)
 var j = 1;
@@ -170,6 +171,24 @@ function checkInvio(form) {
 }
 </script>
 
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#paziente').change(function(event) {  
+        var $paziente=$("select#paziente").val();
+           $.get('ActionServlet',{paziente:$paziente},function(responseJson) {   
+            var $select = $('#cartelle');                           
+               $select.find('option').remove();                          
+               $.each(responseJson, function(key, value) {               
+                   $('<option>').val(key).text(value).appendTo($select);      
+                    });
+            });
+        });
+    });          
+</script>
+
 </head>
 <title>DiagnosiPage</title>
 
@@ -231,13 +250,20 @@ function checkInvio(form) {
 
 
 				<form name="diagnosi" action="?ps=diagnosi&medico=<%= iAm.getId() %>" method="post" class="dark-matter" onSubmit="return checkInvio(this);">
-					Paziente:<br> <select name="paziente" style="background: url(./css/images/down_arrow_select.jpg) no-repeat right #dddd;margin:2px;azimuth:left-side;background-image:url(./css/images/down_arrow_select.jpg);">
+					Paziente:<br> <select id = "paziente" name="paziente" style="background: url(./css/images/down_arrow_select.jpg) no-repeat right #dddd;margin:2px;azimuth:left-side;background-image:url(./css/images/down_arrow_select.jpg);">
 					<% for (int i = 0; i < pazienti.size(); i++) { %>
 					   <option value="<%= pazienti.get(i).getCodsan() %>" > <%= pazienti.get(i).getCodsan() %> 
 					   ( <%= pazienti.get(i).getCognome() %> <%= pazienti.get(i).getNome() %>  ) </option>
 					   <% } %>
 					  </select> 
 					<br> 
+					
+					
+					Cartella Clinica del Paziente:
+					<select id="cartelle" name="cartelle" style="background: url(./css/images/down_arrow_select.jpg) no-repeat right #dddd;margin:2px;azimuth:left-side;background-image:url(./css/images/down_arrow_select.jpg);">
+					<option>selezionare prima il paziente</option>
+					</select>
+					
 					<label>Data:<br>
 						<input type="date" name="data">
 					</label> 

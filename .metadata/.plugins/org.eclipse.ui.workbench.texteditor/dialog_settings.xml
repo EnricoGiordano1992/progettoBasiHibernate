@@ -3,18 +3,19 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="291" key="DIALOG_WIDTH"/>
 		<item value="248" key="DIALOG_Y_ORIGIN"/>
-		<item value="433" key="DIALOG_HEIGHT"/>
 		<item value="1004" key="DIALOG_X_ORIGIN"/>
+		<item value="433" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="id_paziente" key="selection"/>
+		<item value="Date" key="selection"/>
 		<list key="findhistory">
+			<item value="date"/>
 			<item value="id_paziente"/>
 			<item value="select d.*, m.*"/>
 			<item value="lazy"/>
@@ -22,7 +23,6 @@
 			<item value="specializzato"/>
 			<item value="select * from spec"/>
 			<item value="private final String"/>
-			<item value="String.class"/>
 		</list>
 		<list key="replacehistory">
 			<item value="String"/>
