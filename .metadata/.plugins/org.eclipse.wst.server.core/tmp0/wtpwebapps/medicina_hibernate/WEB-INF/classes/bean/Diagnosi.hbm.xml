@@ -30,7 +30,7 @@
         <property name="patologia" type="string">
             <column name="patologia" length="200" not-null="true" />
         </property>
-        <set name="confermes" table="conferme" inverse="true" lazy="true" fetch="select">
+        <set name="confermes" table="conferme" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="id_paziente" length="30" not-null="true" />
                 <column name="data" length="13" not-null="true" />
@@ -38,7 +38,7 @@
             </key>
             <one-to-many class="bean.Conferme" />
         </set>
-        <set name="contraddizionis" table="contraddizioni" inverse="true" lazy="true" fetch="select">
+        <set name="contraddizionis" table="contraddizioni" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="id_paziente" length="30" not-null="true" />
                 <column name="data" length="13" not-null="true" />

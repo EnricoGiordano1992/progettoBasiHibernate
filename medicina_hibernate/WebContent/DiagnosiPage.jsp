@@ -260,7 +260,7 @@ function checkInvio(form) {
 					
 					
 					Cartella Clinica del Paziente:
-					<select id="cartelle" name="cartelle" style="background: url(./css/images/down_arrow_select.jpg) no-repeat right #dddd;margin:2px;azimuth:left-side;background-image:url(./css/images/down_arrow_select.jpg);">
+					<select id="cartelle" name="cartella" style="background: url(./css/images/down_arrow_select.jpg) no-repeat right #dddd;margin:2px;azimuth:left-side;background-image:url(./css/images/down_arrow_select.jpg);">
 					<option>selezionare prima il paziente</option>
 					</select>
 					

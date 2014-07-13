@@ -156,12 +156,11 @@
 					sintomi che confermano la patologia: <%=diagnosi.get(i).getConfermes().size() %>
 					
 				<%
-					conferme = dbms.getConfermeDiagnosi(diagnosi.get(i).getId());
 				
-					for (int j = 0; j < conferme.size(); j++) {
+					for (int j = 0; j < diagnosi.get(i).getConfermes().size(); j++) {
 				%>
 					
-					<%= conferme.get(j).getId().getNPat() %>
+					<%= ((Conferme)diagnosi.get(i).getConfermes().toArray()[j]).getSintomi().getId().getIdCartella() %>
 					
 					<% } %>
 					
@@ -169,12 +168,11 @@
 					sintomi che contraddicono la patologia: <%=diagnosi.get(i).getContraddizionis().size() %>
 					
 				<%
-					contraddizioni = dbms.getContraddizioniDiagnosi(diagnosi.get(i).getId());
 				
-					for (int j = 0; j < conferme.size(); j++) {
+					for (int j = 0; j < diagnosi.get(i).getContraddizionis().size(); j++) {
 				%>
 					
-					<%= contraddizioni.get(j).getId().getNPat() %>
+					<%= ((Contraddizioni)diagnosi.get(i).getContraddizionis().toArray()[j]).getSintomi().getId().getIdCartella() %>
 					
 					<% } %>
 					

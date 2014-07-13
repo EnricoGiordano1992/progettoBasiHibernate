@@ -77,8 +77,9 @@ public class DBMS {
 	String queryConfermeDellaDiagnosi = 
 			"select c.* "
 			+ "from conferme as c "
-			+ "where c.id_diagnosi = (:id_diagnosi) "
-			+ "and c.data = (:data_diagnosi) ;";
+			+ "where c.id_cartella = (:id_cartella) "
+			+ "and c.data = (:data_diagnosi) ;"
+			+ "";
 
 	String queryContraddizioniDellaDiagnosi = 
 			"select c.* "
@@ -574,7 +575,7 @@ public class DBMS {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 
-    		SintomiId s_id = new SintomiId(sintomi.get(i), cartella.getId());
+    		SintomiId s_id = new SintomiId(sintomi.get(i), id_cartella);
     		Sintomi s = new Sintomi(s_id, cartella, intensita.get(i), date);
 
 			session.save(s);
@@ -588,7 +589,7 @@ public class DBMS {
 			if(tipo.get(i).equals("conferma")){
 				conferme.setDiagnosi(d);
 				
-				ConfermeId c_id = new ConfermeId(s_id.getNome(), sintomi.get(i), id_paziente, date, id_cartella);
+				ConfermeId c_id = new ConfermeId(s_id.getIdCartella(), sintomi.get(i), id_paziente, date, id_cartella);
 				conferme.setId(c_id);
 				
 				conferme.setSintomi(s);
@@ -597,7 +598,7 @@ public class DBMS {
 			else{
 				contraddizioni.setDiagnosi(d);
 				
-				ContraddizioniId c_id = new ContraddizioniId(s_id.getNome(), sintomi.get(i), id_paziente, date, id_cartella);
+				ContraddizioniId c_id = new ContraddizioniId(s_id.getIdCartella(), sintomi.get(i), id_paziente, date, id_cartella);
 				contraddizioni.setId(c_id);
 				
 				contraddizioni.setSintomi(s);
